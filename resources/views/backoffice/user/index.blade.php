@@ -26,6 +26,27 @@
                                     @endforeach
                                 </td>
                                 <td>
+                                    <x-button-modal id="{{ $user->id }}" title="Ubah Data" />
+                                    <x-modal id="{{ $user->id }}" title="Ubah Data">
+                                        <form action="{{ route('backoffice.user.update', $user->id) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <x-input title="Nama User" name="name" type="text"
+                                                placeholder="Masukan Nama user" value="{{ $user->name }}" />
+                                            <x-select-group title="Role">
+                                                @foreach ($roles as $role)
+                                                    <label class="form-selectgroup-item">
+                                                        <input type="checkbox" name="roles[]" value="{{ $role->name }}"
+                                                            class="form-selectgroup-input" @checked($user->roles()->find($role->name))>
+                                                        <span class="form-selectgroup-label">
+                                                            {{ $role->name }}
+                                                        </span>
+                                                    </label>
+                                                @endforeach
+                                            </x-select-group>
+                                            <x-button-save title="Simpan" />
+                                        </form>
+                                    </x-modal>
                                     <x-button-delete id="{{ $user->id }}" title="Hapus Data"
                                         url="{{ route('backoffice.user.destroy', $user->id) }}" />
                                 </td>
