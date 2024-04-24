@@ -55,7 +55,7 @@
             </x-card-action>
             <div class="d-flex justify-content-end">{{ $roles->links() }}</div>
         </div>
-         <div class="col-12 col-lg-4">
+        <div class="col-12 col-lg-4">
             <form action="{{ route('backoffice.role.store') }}" method="POST">
                 @csrf
                 <x-card title="Tambah Role" class="card-body">
