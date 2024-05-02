@@ -23,6 +23,21 @@
                         </td>
                         <td>{{ $category->name }}</td>
                         <td>
+                            @can('category-update')
+                                <x-button-modal id="{{ $category->id }}" title="Ubah Data" />
+                                <x-modal id="{{ $category->id }}" title="Ubah Data">
+                                    <form action="{{ route('backoffice.category.update', $category->id) }}"
+                                    method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        @method('PUT')
+                                        <x-input title="Nama Kategori" name="name" type="text"
+                                        placeholder="Masukan Nama Kategori" value="{{ $category->name }}" />
+                                        <x-input title="Gambar Kategori" name="image" type="file" placeholder=""
+                                        value="{{ $category->image }}" />
+                                        <x-button-save title="Simpan" />
+                                    </form>
+                                </x-modal>
+                                @endcan
                             @can('category-delete')
                                 <x-button-delete id="{{ $category->id }}" title="Hapus Data"
                                 url="{{ route('backoffice.category.destroy', $category->id) }}" />
