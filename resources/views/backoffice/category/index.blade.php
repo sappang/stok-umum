@@ -22,7 +22,12 @@
                         style="background-image: url({{ $category->image }})"></span>
                         </td>
                         <td>{{ $category->name }}</td>
-                        <td></td>
+                        <td>
+                            @can('category-delete')
+                                <x-button-delete id="{{ $category->id }}" title="Hapus Data"
+                                url="{{ route('backoffice.category.destroy', $category->id) }}" />
+                            @endcan
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
