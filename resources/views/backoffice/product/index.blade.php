@@ -59,6 +59,10 @@
                                             Ubah Data
                                         </a>
                                     @endcan
+                                    @can('product-delete')
+                                        <x-button-delete id="{{ $product->id }}" title="Hapus Data"
+                                            url="{{ route('backoffice.product.destroy', $product->id) }}" />
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach
