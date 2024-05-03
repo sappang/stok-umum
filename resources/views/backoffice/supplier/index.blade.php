@@ -22,6 +22,23 @@
                                 <td>{{ $supplier->address }}</td>
                                 <td>{{ $supplier->telp }}</td>
                                 <td>
+                                    @can('supplier-update')
+                                    <x-button-modal id="{{ $supplier->id }}" title="Ubah Data" />
+                                    <x-modal id="{{ $supplier->id }}" title="Ubah Data">
+                                        <form action="{{ route('backoffice.supplier.update', $supplier->id) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <x-input title="Nama Penyedia" name="name" type="text"
+                                        placeholder="Masukan Nama Penyedia" value="{{ $supplier->name }}" />
+                                        <x-input title="Telp Penyedia" name="telp" type="number"
+                                        placeholder="Masukan Telp Penyedia" value="{{ $supplier->telp }}" />
+                                        <x-input title="Alamat Penyedia" name="address" type="text"
+                                        placeholder="Masukan Alamat Penyedia" value="{{ $supplier->address }}" />
+                                        <x-button-save title="Simpan" />
+                                        </form>
+                                    </x-modal>
+                                    @endcan
                                     @can('supplier-delete')
                                         <x-button-delete id="{{ $supplier->id }}" title="Hapus Data"
                                             url="{{ route('backoffice.supplier.destroy', $supplier->id) }}" />
