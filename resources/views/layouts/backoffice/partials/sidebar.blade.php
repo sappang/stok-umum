@@ -97,8 +97,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"
-                            href="#">
+                        <a class="nav-link {{ Route::is('backoffice.product*') ? 'active' : '' }}"
+                            href="{{ route('backoffice.product.index') }}">
                             <span class="nav-link-icon d-md-none d-lg-inline-block mr-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-database"
                                     width="24" height="24" viewBox="0 0 24 24" stroke-width="1.25"
@@ -110,7 +110,7 @@
                                 </svg>
                             </span>
                             <span class="nav-link-title">
-                                Produk
+                                Barang
                             </span>
                         </a>
                     </li>
