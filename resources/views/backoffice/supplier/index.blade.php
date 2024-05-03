@@ -3,7 +3,7 @@
 @section('content')
     <x-container>
         <div class="col-12 col-lg-8">
-            <x-card-action title="Daftar Supplier" url="{{ route('backoffice.supplier.index') }}">
+            <x-card-action title="Daftar Penyedia" url="{{ route('backoffice.supplier.index') }}">
                 <x-table>
                     <thead>
                         <tr>
@@ -38,12 +38,12 @@
             <div class="col-12 col-lg-4">
                 <form action="{{ route('backoffice.supplier.store') }}" method="POST">
                     @csrf
-                    <x-card title="Tambah Supplier" class="card-body">
-                        <x-input title="Nama Supplier" name="name" type="text" placeholder="Masukan Nama Supplier"
+                    <x-card title="Tambah Penyedia" class="card-body">
+                        <x-input title="Nama Penyedia" name="name" type="text" placeholder="Masukan Nama Penyedia"
                             value="{{ old('name') }}" />
-                        <x-input title="Telp Supplier" name="telp" type="number" placeholder="Masukan Telp Supplier"
+                        <x-input title="Telp Penyedia" name="telp" type="number" placeholder="Masukan Telp Penyedia"
                             value="{{ old('telp') }}" />
-                        <x-input title="Alamat Supplier" name="address" type="text" placeholder="Masukan Alamat Supplier"
+                        <x-input title="Alamat Penyedia" name="address" type="text" placeholder="Masukan Alamat Penyedia"
                             value="{{ old('address') }}" />
                         <x-button-save title="Simpan" />
                     </x-card>
