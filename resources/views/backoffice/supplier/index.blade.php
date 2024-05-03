@@ -21,7 +21,12 @@
                                 <td>{{ $supplier->name }}</td>
                                 <td>{{ $supplier->address }}</td>
                                 <td>{{ $supplier->telp }}</td>
-                                <td></td>
+                                <td>
+                                    @can('supplier-delete')
+                                        <x-button-delete id="{{ $supplier->id }}" title="Hapus Data"
+                                            url="{{ route('backoffice.supplier.destroy', $supplier->id) }}" />
+                                    @endcan
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
