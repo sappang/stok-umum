@@ -29,5 +29,21 @@
             </x-card-action>
             <div class="d-flex justify-content-end">{{ $suppliers->links() }}</div>
         </div>
+        @can('supplier-create')
+            <div class="col-12 col-lg-4">
+                <form action="{{ route('backoffice.supplier.store') }}" method="POST">
+                    @csrf
+                    <x-card title="Tambah Supplier" class="card-body">
+                        <x-input title="Nama Supplier" name="name" type="text" placeholder="Masukan Nama Supplier"
+                            value="{{ old('name') }}" />
+                        <x-input title="Telp Supplier" name="telp" type="number" placeholder="Masukan Telp Supplier"
+                            value="{{ old('telp') }}" />
+                        <x-input title="Alamat Supplier" name="address" type="text" placeholder="Masukan Alamat Supplier"
+                            value="{{ old('address') }}" />
+                        <x-button-save title="Simpan" />
+                    </x-card>
+                </form>
+            </div>
+        @endcan
     </x-container>
 @endsection
