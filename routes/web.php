@@ -9,6 +9,7 @@ use App\Http\Controllers\Backoffice\CategoryController;
 use App\Http\Controllers\Backoffice\SupplierController;
 use App\Http\Controllers\Backoffice\DashboardController;
 use App\Http\Controllers\Backoffice\PermissionController;
+use App\Http\Controllers\Backoffice\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,14 +28,15 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'backoffice', 'as' => 'backoffice.', 'middleware' => ['auth']], function(){
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
-        Route::resource('/permission', PermissionController::class);
-        Route::resource('/role', RoleController::class);
-        Route::resource('/user', UserController::class);
-        Route::resource('/category', CategoryController::class);
-        Route::resource('/supplier', SupplierController::class);
-        Route::resource('/product', ProductController::class);
+    Route::resource('/permission', PermissionController::class);
+    Route::resource('/role', RoleController::class);
+    Route::resource('/user', UserController::class);
+    Route::resource('/category', CategoryController::class);
+    Route::resource('/supplier', SupplierController::class);
+    Route::resource('/product', ProductController::class);
     Route::controller(StokController::class)->prefix('/stock')->as('stock.')->group(function(){
         Route::get('/index', 'index')->name('index');
         Route::put('/update/{id}', 'update')->name('update');
     });
+    Route::get('/transaction', TransactionController::class)->name('transaction');
 });
