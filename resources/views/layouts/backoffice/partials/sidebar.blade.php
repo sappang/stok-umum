@@ -118,8 +118,8 @@
                 @role('admin')
                     <div class="hr-text hr-text-left ml-2 mb-2 mt-2">Management Stok</div>
                     <li class="nav-item">
-                        <a class="nav-link"
-                            href="#">
+                        <a class="nav-link {{ Route::is('backoffice.stock*') ? 'active' : '' }}"
+                            href="{{ route('backoffice.stock.index') }}">
                             <span class="nav-link-icon d-md-none d-lg-inline-block mr-1">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                     class="icon icon-tabler icon-tabler-database-import" width="24" height="24"
