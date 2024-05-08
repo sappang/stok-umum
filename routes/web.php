@@ -5,6 +5,7 @@ use App\Http\Controllers\Backoffice\RoleController;
 use App\Http\Controllers\Backoffice\StokController;
 use App\Http\Controllers\Backoffice\UserController;
 use App\Http\Controllers\Backoffice\OrderController;
+use App\Http\Controllers\Backoffice\ReportController;
 use App\Http\Controllers\Backoffice\ProductController;
 use App\Http\Controllers\Backoffice\CategoryController;
 use App\Http\Controllers\Backoffice\SupplierController;
@@ -41,4 +42,9 @@ Route::group(['prefix' => 'backoffice', 'as' => 'backoffice.', 'middleware' => [
     });
     Route::get('/transaction', TransactionController::class)->name('transaction');
     Route::resource('/order', OrderController::class);
+    Route::controller(ReportController::class)->prefix('/report')->as('report.')->group(function(){
+        Route::get('/index', 'index')->name('index');
+        Route::get('/filter', 'filter')->name('filter');
+        Route::get('/pdf/{fromDate}/{toDate}', 'pdf')->name('pdf');
+    });
 });
