@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Landing\CartController;
+use App\Http\Controllers\Landing\HomeController;
 use App\Http\Controllers\Backoffice\RoleController;
 use App\Http\Controllers\Backoffice\StokController;
 use App\Http\Controllers\Backoffice\UserController;
@@ -13,6 +14,9 @@ use App\Http\Controllers\Backoffice\SupplierController;
 use App\Http\Controllers\Backoffice\DashboardController;
 use App\Http\Controllers\Backoffice\PermissionController;
 use App\Http\Controllers\Backoffice\TransactionController;
+use App\Http\Controllers\Landing\ProductController as LandingProductController;
+use App\Http\Controllers\Landing\CategoryController as LandingCategoryController;
+use App\Http\Controllers\Landing\TransactionController as LandingTransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +29,15 @@ use App\Http\Controllers\Backoffice\TransactionController;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
+Route::get('/', HomeController::class)->name('home');
+
+Route::controller(LandingProductController::class)->as('product.')->group(function(){
+    Route::get('/product', 'index')->name('index');
+    Route::get('/product/{product:slug}', 'show')->name('show');
+});
+Route::controller(LandingCategoryController::class)->as('category.')->group(function(){
+    Route::get('/category', 'index')->name('index');
+    Route::get('/category/{category:slug}', 'show')->name('show');
 });
 
 Route::controller(CartController::class)->middleware('auth')->as('cart.')->group(function(){

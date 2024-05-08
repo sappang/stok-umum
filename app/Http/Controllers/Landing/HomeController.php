@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Landing;
 
-use App\Http\Controllers\Controller;
+use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
@@ -12,6 +14,15 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        //
+        $products = Product::with(['supplier', 'category'])
+            ->latest()
+            ->paginate(6)
+            ->withQueryString();
+
+        $categories = Category::withCount('products')
+            ->latest()
+            ->get();
+
+        return view('landing.welcome', compact('products', 'categories'));
     }
 }
