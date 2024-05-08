@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backoffice\RoleController;
 use App\Http\Controllers\Backoffice\StokController;
 use App\Http\Controllers\Backoffice\UserController;
+use App\Http\Controllers\Backoffice\OrderController;
 use App\Http\Controllers\Backoffice\ProductController;
 use App\Http\Controllers\Backoffice\CategoryController;
 use App\Http\Controllers\Backoffice\SupplierController;
@@ -39,4 +40,5 @@ Route::group(['prefix' => 'backoffice', 'as' => 'backoffice.', 'middleware' => [
         Route::put('/update/{id}', 'update')->name('update');
     });
     Route::get('/transaction', TransactionController::class)->name('transaction');
+    Route::resource('/order', OrderController::class);
 });
