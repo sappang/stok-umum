@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Landing\CartController;
 use App\Http\Controllers\Backoffice\RoleController;
 use App\Http\Controllers\Backoffice\StokController;
 use App\Http\Controllers\Backoffice\UserController;
@@ -26,6 +27,13 @@ use App\Http\Controllers\Backoffice\TransactionController;
 
 Route::get('/', function () {
     return view('auth.login');
+});
+
+Route::controller(CartController::class)->middleware('auth')->as('cart.')->group(function(){
+    Route::get('/cart', 'index')->name('index');
+    Route::post('/cart/{product:id}', 'store')->name('store');
+    Route::put('/cart/update/{cart:id}', 'update')->name('update');
+    Route::delete('/cart/delete/{cart}', 'destroy')->name('destroy');
 });
 
 Route::group(['prefix' => 'backoffice', 'as' => 'backoffice.', 'middleware' => ['auth']], function(){
