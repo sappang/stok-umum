@@ -164,8 +164,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"
-                        href="#">
+                    <a class="nav-link {{ Route::is('backoffice.order*') ? 'active' : '' }}"
+                        href="{{ route('backoffice.order.index') }}">
                         <span class="nav-link-icon d-md-none d-lg-inline-block mr-1">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-database"
                                 width="24" height="24" viewBox="0 0 24 24" stroke-width="1.25"
@@ -179,7 +179,7 @@
                             </svg>
                         </span>
                         <span class="nav-link-title">
-                            Permintaan Produk
+                            Permintaan Barang
                         </span>
                     </a>
                 </li>

@@ -36,8 +36,8 @@ Route::group(['prefix' => 'backoffice', 'as' => 'backoffice.', 'middleware' => [
     Route::resource('/supplier', SupplierController::class);
     Route::resource('/product', ProductController::class);
     Route::controller(StokController::class)->prefix('/stock')->as('stock.')->group(function(){
-        Route::get('/index', 'index')->name('index');
-        Route::put('/update/{id}', 'update')->name('update');
+    Route::get('/index', 'index')->name('index');
+    Route::put('/update/{id}', 'update')->name('update');
     });
     Route::get('/transaction', TransactionController::class)->name('transaction');
     Route::resource('/order', OrderController::class);
