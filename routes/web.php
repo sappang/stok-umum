@@ -32,12 +32,12 @@ use App\Http\Controllers\Landing\TransactionController as LandingTransactionCont
 Route::get('/', HomeController::class)->name('home');
 
 Route::controller(LandingProductController::class)->as('product.')->group(function(){
-    Route::get('/product', 'index')->name('index');
-    Route::get('/product/{product:slug}', 'show')->name('show');
+    Route::get('/product', [LandingProductController::class, 'index'])->name('index');
+    Route::get('/product/{product:slug}', [LandingProductController::class, 'show'])->name('show');
 });
 Route::controller(LandingCategoryController::class)->as('category.')->group(function(){
-    Route::get('/category', 'index')->name('index');
-    Route::get('/category/{category:slug}', 'show')->name('show');
+    Route::get('/category', [LandingCategoryController::class, 'index'])->name('index');
+    Route::get('/category/{category:slug}', [LandingCategoryController::class, 'show'])->name('show');
 });
 
 Route::controller(CartController::class)->middleware('auth')->as('cart.')->group(function(){
@@ -46,6 +46,8 @@ Route::controller(CartController::class)->middleware('auth')->as('cart.')->group
     Route::put('/cart/update/{cart:id}', 'update')->name('update');
     Route::delete('/cart/delete/{cart}', 'destroy')->name('destroy');
 });
+
+Route::post('/transaction', LandingTransactionController::class)->middleware('auth')->name('transaction.store');
 
 Route::group(['prefix' => 'backoffice', 'as' => 'backoffice.', 'middleware' => ['auth']], function(){
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
