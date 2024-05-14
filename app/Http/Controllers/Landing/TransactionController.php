@@ -38,9 +38,9 @@ class TransactionController extends Controller
             TransactionDetail::create([
                 'transaction_id' => $transaction->id,
                 'product_id' => $cart->product_id,
-                'quantity' => $cart->quantity,
+                'qty' => $cart->quantity,
             ]);
-            Product::whereId($cart->product_id)->decrement('quantity', $cart->quantity);
+            Product::whereId($cart->product_id)->decrement('qty', $cart->quantity);
         }
 
         Cart::where('user_id', Auth::id())->delete();
