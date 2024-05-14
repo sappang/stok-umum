@@ -28,6 +28,7 @@ class TransactionController extends Controller
                 ->paginate(10)
                 ->withQueryString();
         }
+        
         return view('backoffice.transaction.transaction', compact('transactions'));
 
     }

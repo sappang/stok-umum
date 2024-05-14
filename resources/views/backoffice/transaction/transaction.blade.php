@@ -27,7 +27,7 @@
                                 </td>
                                 <td>
                                     @foreach ($transaction->details as $detail)
-                                        <li>{{ $detail->quantity }}</li>
+                                        <li>{{ $detail->qty }}</li>
                                     @endforeach
                                 </td>
                             </tr>
