@@ -7,6 +7,7 @@ use App\Http\Controllers\Backoffice\RoleController;
 use App\Http\Controllers\Backoffice\StokController;
 use App\Http\Controllers\Backoffice\UserController;
 use App\Http\Controllers\Backoffice\OrderController;
+use App\Http\Controllers\Backoffice\BagianController;
 use App\Http\Controllers\Backoffice\ReportController;
 use App\Http\Controllers\Backoffice\ProductController;
 use App\Http\Controllers\Backoffice\CategoryController;
@@ -54,6 +55,7 @@ Route::group(['prefix' => 'backoffice', 'as' => 'backoffice.', 'middleware' => [
     Route::resource('/permission', PermissionController::class);
     Route::resource('/role', RoleController::class);
     Route::resource('/user', UserController::class);
+    Route::resource('/bagian', BagianController::class);
     Route::resource('/category', CategoryController::class);
     Route::resource('/supplier', SupplierController::class);
     Route::resource('/product', ProductController::class);
