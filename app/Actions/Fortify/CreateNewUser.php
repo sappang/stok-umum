@@ -33,7 +33,7 @@ class CreateNewUser implements CreatesNewUsers
             'nik' => ['required','max:16','unique'],
         ])->validate();
 
-        $role = Role::where('name', 'Customer')->first();
+        $role = Role::where('name', 'staff')->first();
 
         $user = User::create([
             'name' => $input['name'],

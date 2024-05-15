@@ -72,7 +72,7 @@ class RoleController extends Controller
             'name' => 'required',
             'permissions' => 'required',
         ]);
-
+        
         $role->update($request->all());
 
         $role->syncPermissions($request->permissions);

@@ -99,7 +99,7 @@
                 <div class="d-flex justify-content-end">{{ $orders->links() }}</div>
             </div>
         @endrole
-        @role('customer')
+        @role('staff')
             <div class="col-12 col-lg-8">
                 <x-card title="Daftar Permintaan Produk" class="card-body p-0">
                     <x-table>

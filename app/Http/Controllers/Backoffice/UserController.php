@@ -3,9 +3,15 @@
 namespace App\Http\Controllers\Backoffice;
 
 use App\Models\User;
+use App\Models\Bagian;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password;
+use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 class UserController extends Controller
 {
@@ -28,7 +34,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        
+
+        $bagians = Bagian::all();
+
+        return view('backoffice.user.register', compact('bagians'));
     }
 
     /**
@@ -36,7 +46,30 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required','string','email','max:255','unique:users'],
+            'password' => ['required', 'string', Password::default(), 'confirmed'],
+            'kd_pegawai' => ['required','max:17','unique:users'],
+            'nik' => ['required','max:16','unique:users'],
+            'bagian_id' => ['required'],
+        ]);
+        
+
+        $role = Role::where('name', 'staff')->first();
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'kd_pegawai' => $request->kd_pegawai,
+            'nik' => $request->nik,
+            'bagian_id' => $request->bagian_id,
+            'password' => Hash::make($request->password),
+        ]);
+
+        $user->assignRole($role);
+
+        return redirect(route('backoffice.user.index'))->with('toast_success', 'Data berhasil disimpan');
     }
 
     /**

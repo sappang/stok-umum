@@ -8,7 +8,7 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Customer</th>
+                            <th>Permintaan</th>
                             <th>Invoice</th>
                             <th>Nama Produk</th>
                             <th>Kuantitas Produk</th>

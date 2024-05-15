@@ -35,8 +35,8 @@
                                                 @foreach ($permissions as $permission)
                                                     <label class="form-selectgroup-item">
                                                         <input type="checkbox" name="permissions[]"
-                                                            value="{{ $permission->name }}" class="form-selectgroup-input"
-                                                            @checked($role->permissions()->find($permission->name))>
+                                                            value="{{ $permission->id }}" class="form-selectgroup-input"
+                                                            @checked($role->permissions()->find($permission->id))>
                                                         <span class="form-selectgroup-label">
                                                             {{ $permission->name }}
                                                         </span>

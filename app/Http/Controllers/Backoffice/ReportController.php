@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Backoffice;
 
-use PDF;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Carbon\Carbon;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
@@ -42,10 +43,30 @@ class ReportController extends Controller
         $grandQuantity = TransactionDetail::with('products')
             ->whereDate('created_at', '>=', $fromDate)
             ->whereDate('created_at', '<=', $toDate)
-            ->sum('quantity');
+            ->sum('qty');
 
-        $pdf = PDF::loadView('backoffice.report.report', compact('fromDate', 'toDate', 'reports', 'grandQuantity'))->setPaper('a4', 'landscape');
+        // $pdf = PDF::loadView('backoffice.report.report', compact('fromDate', 'toDate', 'reports', 'grandQuantity'))->setPaper('a4', 'landscape');
 
-        return $pdf->stream('Laporan - '.Carbon::parse($fromDate)->format('d M Y').' - '.Carbon::parse($toDate)->format('d M Y').'.pdf');
+        // return $pdf->stream('Laporan - '.Carbon::parse($fromDate)->format('d M Y').' - '.Carbon::parse($toDate)->format('d M Y').'.pdf');
+    // Set up Dompdf options
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isRemoteEnabled', true);
+
+        // Create a new Dompdf instance
+        $dompdf = new Dompdf($options);
+
+        // Load the HTML content
+        $html = view('backoffice.report.report', compact('fromDate', 'toDate', 'reports', 'grandQuantity'))->render();
+        $dompdf->loadHtml($html);
+
+        // Set paper size and orientation
+        $dompdf->setPaper('A4', 'landscape');
+
+        // Render the PDF
+        $dompdf->render();
+
+        // Stream the PDF to the browser
+        return $dompdf->stream('Laporan - '.Carbon::parse($fromDate)->format('d M Y').' - '.Carbon::parse($toDate)->format('d M Y').'.pdf');
     }
 }

@@ -35,7 +35,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-         $suppliers = Supplier::all();
+        $suppliers = Supplier::all();
 
         $categories = Category::all();
 

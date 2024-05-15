@@ -105,7 +105,7 @@
                 @endif
             </div>
         @endrole
-        @role('customer')
+        @role('staff')
             <div class="col-6">
                 <x-widget title="Permintaan Produk" subtitle="{{ $orders->count() }}" class="bg-indigo">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-database" width="24"

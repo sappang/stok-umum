@@ -87,7 +87,7 @@
                     <td style="text-align: right">
                         @foreach ($report->details as $detail)
                             <ol style="padding: 0px;">
-                                {{ $detail->quantity }} Item
+                                {{ $detail->qty }} Item
                             </ol>
                         @endforeach
                     </td>
