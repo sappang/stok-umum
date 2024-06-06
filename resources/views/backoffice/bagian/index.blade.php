@@ -18,6 +18,19 @@
                                 <td>{{ $i + $bagians->firstItem() }}</td>
                                 <td>{{ $bagian->nama_bagian }}</td>
                                 <td>
+                                    <x-button-modal id="{{ $bagian->id }}" title="Ubah Data" />
+                                        <x-modal id="{{ $bagian->id }}" title="Ubah Data">
+                                        <form action="{{ route('backoffice.bagian.update', $bagian->id) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                            <x-input title="Nama Bagian" name="nama_bagian" type="text"
+                                            placeholder="Masukan Nama Bagian" value="{{ $bagian->nama_bagian }}" />
+                                            <x-button-save title="Simpan" />
+                                        </form>
+                                        </x-modal>
+                                    <x-button-delete id="{{ $bagian->id }}" title="Hapus Data" url="{{ route('backoffice.bagian.destroy', $bagian->id) }}" />
+
                                 </td>
                             </tr>
                         @endforeach

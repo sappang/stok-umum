@@ -54,6 +54,8 @@ class ProductController extends Controller
             'category_id' => $request->category_id,
             'supplier_id' => $request->supplier_id,
             'description' => $request->description,
+            'stok_awal' => $request->stok_awal,
+            'quantity' => $request->stok_awal,
             'unit' => $request->unit,
             'image' => $image->hashName(),
         ]);
@@ -86,14 +88,19 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, Product $product)
     {
+        if ($request->stok_awal < $product->quantity) 
+            {
+                return redirect()->back()->withErrors(['stok_awal' => 'Stok awal tidak boleh lebih kecil dari stok tertinggal.'])->withInput();
+            }
         $image = $this->uploadImage($request, $this->path);
-
+        
         $product->update([
             'name' => $request->name,
             'category_id' => $request->category_id,
             'supplier_id' => $request->supplier_id,
             'description' => $request->description,
             'unit' => $request->unit,
+            'stok_awal' => $request->stok_awal,
         ]);
 
         if($request->file('image')){

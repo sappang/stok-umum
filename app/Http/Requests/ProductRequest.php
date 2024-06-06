@@ -29,6 +29,7 @@ class ProductRequest extends FormRequest
                 'supplier_id' => 'required',
                 'description' => 'required',
                 'unit' => 'required',
+                'stok_awal' => 'required',
             ];
         }elseif(request()->isMethod('PUT')){
             $data = [

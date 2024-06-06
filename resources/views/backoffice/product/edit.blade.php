@@ -19,9 +19,6 @@
                             <x-input title="Satuan Barang" name="unit" type="text" placeholder="Masukan Satuan Barang"
                                 value="{{ $product->unit }}" />
                         </div>
-                    </div>
-
-                    <div class="row">
                         <div class="col-6">
                             <x-select title="Kategori" name="category_id">
                                 <option value="" selected>Silahkan Pilih Kategori Barang</option>
@@ -41,6 +38,13 @@
                                     </option>
                                 @endforeach
                             </x-select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <x-input title="Stok Awal" name="stok_awal" type="text" placeholder="Jumlah Stok Awal"
+                                value="{{ $product->stok_awal }}" />
                         </div>
                         <x-textarea title="Deskripsi Barang" name="description" placeholder="Masukan Deskripsi Barang">
                             {{ $product->description }}</x-textarea>

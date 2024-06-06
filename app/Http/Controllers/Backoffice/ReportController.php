@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Backoffice;
 
+use Carbon\Carbon;
 use Dompdf\Dompdf;
 use Dompdf\Options;
-use Carbon\Carbon;
+use App\Models\Product;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Models\TransactionDetail;
@@ -12,12 +13,13 @@ use App\Http\Controllers\Controller;
 
 class ReportController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $fromDate = $request->from_date;
-        $toDate = $request->to_date;
+        // $fromDate = $request->from_date;
+        // $toDate = $request->to_date;
 
-        return view('backoffice.report.index', compact('fromDate', 'toDate'));
+        // return view('backoffice.report.index', compact('fromDate', 'toDate'));
+        return view('backoffice.report.index');
     }
 
     public function filter(Request $request)
@@ -31,6 +33,12 @@ class ReportController extends Controller
             ->get();
 
         return view('backoffice.report.index', compact('fromDate', 'toDate', 'reports'));
+    }
+    
+    public function reportbm()
+    {
+            $reports = Product::with('category')->get();
+        return view('backoffice.report.rptbm', compact('reports'));
     }
 
     public function pdf($fromDate, $toDate)

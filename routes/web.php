@@ -15,6 +15,7 @@ use App\Http\Controllers\Backoffice\SupplierController;
 use App\Http\Controllers\Backoffice\DashboardController;
 use App\Http\Controllers\Backoffice\PermissionController;
 use App\Http\Controllers\Backoffice\TransactionController;
+use App\Http\Controllers\Backoffice\Report\ReportBarangMasukController;
 use App\Http\Controllers\Landing\ProductController as LandingProductController;
 use App\Http\Controllers\Landing\CategoryController as LandingCategoryController;
 use App\Http\Controllers\Landing\TransactionController as LandingTransactionController;
@@ -68,6 +69,8 @@ Route::group(['prefix' => 'backoffice', 'as' => 'backoffice.', 'middleware' => [
     Route::controller(ReportController::class)->prefix('/report')->as('report.')->group(function(){
         Route::get('/index', 'index')->name('index');
         Route::get('/filter', 'filter')->name('filter');
+        Route::get('/reportbm', 'reportbm')->name('reportbm');
         Route::get('/pdf/{fromDate}/{toDate}', 'pdf')->name('pdf');
     });
+    
 });
